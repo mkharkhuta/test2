@@ -1,4 +1,4 @@
-package taco.q4;
+package taco.q4.thread;
 
 public class TestThread extends Thread{
     public void run() {

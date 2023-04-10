@@ -1,7 +1,5 @@
 package taco.q8.deadlock;
 
-import static java.lang.Thread.sleep;
-
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -18,17 +16,13 @@ public class DeadlockExample {
 
     public void operation1() {
         lock1.lock();
-        System.out.println("lock1 acquired, waiting to acquire lock2.");
-        try {
-            sleep(50);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        print("lock1 acquired, waiting to acquire lock2.");
+        sleep(50);
 
         lock2.lock();
-        System.out.println("lock2 acquired");
+        print("lock2 acquired");
 
-        System.out.println("executing first operation.");
+        print("executing first operation.");
 
         lock2.unlock();
         lock1.unlock();
@@ -36,20 +30,28 @@ public class DeadlockExample {
 
     public void operation2() {
         lock2.lock();
-        System.out.println("lock2 acquired, waiting to acquire lock1.");
-        try {
-            sleep(50);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        print("lock2 acquired, waiting to acquire lock1.");
+        sleep(50);
 
         lock1.lock();
-        System.out.println("lock1 acquired");
+        print("lock1 acquired");
 
-        System.out.println("executing second operation.");
+        print("executing second operation.");
 
         lock1.unlock();
         lock2.unlock();
     }
 
+    public void print(String message) {
+        System.out.println("Thread " + Thread.currentThread()
+              .getName() + ": " + message);
+    }
+
+    public void sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

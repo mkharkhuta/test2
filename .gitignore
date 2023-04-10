@@ -1,0 +1,15 @@
+.gradle
+.idea
+.env
+build
+target
+out
+*.iml
+*.ipr
+*.iws
+.classpath
+.metadata/
+.project
+.settings/
+bin
+

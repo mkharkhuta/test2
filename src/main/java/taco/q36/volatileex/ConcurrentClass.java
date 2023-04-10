@@ -1,6 +1,7 @@
 package taco.q36.volatileex;
 
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 class ConcurrentClass {
     static volatile int val = 0;

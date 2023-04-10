@@ -19,7 +19,8 @@ public class ExecutorServiceExample {
                 }            }
         };
 
-        executorService.execute(runnable);
+        executorService.submit(runnable);
+        executorService.submit(runnable);
         executorService.shutdown();
     }
 }
